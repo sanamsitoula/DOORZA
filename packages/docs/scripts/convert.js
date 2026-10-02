@@ -212,7 +212,7 @@ export function rewriteLinks(content, fileRelDir) {
     (_match, text, prefix, rest) => {
       const [pathPart, anchor] = rest.split('#', 2)
       const targetPath = prefix + pathPart
-      const relPath = relative(fileRelDir, targetPath) || '.'
+      const relPath = (relative(fileRelDir, targetPath) || '.').replace(/\\/g, '/')
       const suffix = anchor ? `#${anchor}` : ''
       return `[${text}](${relPath}.md${suffix})`
     },

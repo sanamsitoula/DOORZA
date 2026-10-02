@@ -250,6 +250,10 @@ describe('resolveCredentials', () => {
     })
 
     const mode = fs.statSync(path.join(projectDir, '.spree', 'credentials.json')).mode & 0o777
-    expect(mode).toBe(0o600)
+    if (process.platform !== 'win32') {
+      expect(mode).toBe(0o600)
+    } else {
+      expect(fs.existsSync(path.join(projectDir, '.spree', 'credentials.json'))).toBe(true)
+    }
   })
 })

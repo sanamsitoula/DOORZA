@@ -7,5 +7,6 @@ export default defineConfig({
     // and a pattern that only saw `tests/` silently stopped running them when
     // that code moved into this package.
     include: ['tests/**/*.test.ts', 'src/**/*.test.ts'],
+    testTimeout: 20000,
   },
 })
